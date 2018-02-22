@@ -25,27 +25,27 @@ public class JsonUtils {
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            name = jsonObject.getJSONObject("name").getString("mainName").toString();
+            name = jsonObject.optJSONObject("name").optString("mainName").toString();
             Log.v(LOG_TAG, "name: " + name);
 
 
-            JSONArray knownAsArray = jsonObject.getJSONObject("name").getJSONArray("alsoKnownAs");
+            JSONArray knownAsArray = jsonObject.optJSONObject("name").optJSONArray("alsoKnownAs");
             for (int i = 0; i < knownAsArray.length(); i++) {
-                String knownAsItem = knownAsArray.getString(i);
+                String knownAsItem = knownAsArray.optString(i);
                 Log.v(LOG_TAG, "knownAs: " + knownAsItem);
                 alsoKnownAs.add(knownAsItem);
             }
 
-            placeOfOrigin = jsonObject.getString("placeOfOrigin");
+            placeOfOrigin = jsonObject.optString("placeOfOrigin");
             Log.v(LOG_TAG, "Origin: " + placeOfOrigin);
-            description = jsonObject.getString("description");
+            description = jsonObject.optString("description");
             Log.v(LOG_TAG, "Description: " + description);
-            imageUrl = jsonObject.getString("image");
+            imageUrl = jsonObject.optString("image");
             Log.v(LOG_TAG, "Image url: " + imageUrl);
 
-            JSONArray ingredientsArray = jsonObject.getJSONArray("ingredients");
+            JSONArray ingredientsArray = jsonObject.optJSONArray("ingredients");
             for (int i = 0; i < ingredientsArray.length(); i++) {
-                String ingredientsItem = ingredientsArray.getString(i);
+                String ingredientsItem = ingredientsArray.optString(i);
                 Log.v(LOG_TAG, "ingredients: " + ingredientsItem);
                 ingredients.add(ingredientsItem + ", ");
 

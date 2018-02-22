@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,21 +71,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView descriptionTv = findViewById(R.id.description_tv);
 
         // get the Also known as info and populate the TextView
-        StringBuilder stringBuilder = new StringBuilder();
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
-        for (String alsoKnownAsItem : alsoKnownAs) {
-
-            int alsoKnownAsLength = alsoKnownAs.size();
-            int alsoKnownAsIndex = alsoKnownAs.indexOf(alsoKnownAsItem);
-
-            if ((alsoKnownAsLength - 1) == alsoKnownAsIndex) {
-                stringBuilder.append(alsoKnownAsItem);
-            } else {
-                stringBuilder.append(alsoKnownAsItem + "\n");
-            }
-        }
-        alsoKnownTv.setText(stringBuilder);
-        stringBuilder.setLength(0);
+        String alsoKnownAsString = TextUtils.join("\n", alsoKnownAs);
+        alsoKnownTv.setText(alsoKnownAsString);
 
         // get the Origin info and populate the TextView
         String origin = sandwich.getPlaceOfOrigin();
@@ -92,19 +81,8 @@ public class DetailActivity extends AppCompatActivity {
 
         // get the Ingredients info and populate the TextView
         List<String> ingredients = sandwich.getIngredients();
-        for (String ingredientsItem : ingredients) {
-
-            int ingredientsLentgh = ingredients.size();
-            int ingredientIndex = ingredients.indexOf(ingredientsItem);
-
-            if ((ingredientsLentgh - 1) == ingredientIndex) {
-                stringBuilder.append(ingredientsItem);
-            } else {
-                stringBuilder.append(ingredientsItem + "\n");
-            }
-        }
-        ingredientsTv.setText(stringBuilder);
-        stringBuilder.setLength(0);
+        String ingredientsString = TextUtils.join("\n", ingredients);
+        ingredientsTv.setText(ingredientsString);
 
         // get the Description info and populate the TextView
         String description = sandwich.getDescription();
